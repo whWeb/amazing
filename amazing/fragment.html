@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="image/title.ico">
+	<title>logo</title>
+	<style>
+	*{
+		padding:0px;
+		margin:0px;
+	}
+	#logo{
+		position: absolute;
+		top:50%;
+		left: 50%;
+	}
+	span{
+		background: #FFFBF0 url(image/1.png) no-repeat center;
+		transition: transform 500ms ease-in-out;
+		-moz-transition: -moz-transform 500ms ease-in-out;	/* Firefox 4 */
+		-webkit-transition: -webkit-transform 500ms ease-in-out;	/* Safari 和 Chrome */
+		-o-transition: -o-transform 500ms ease-in-out;	/* Opera */
+		display:inline-block;
+		width:20px;
+		height:20px;
+	}
+	</style>
+</head>
+<body>
+	<div id="logo">
+	</div>
+	<script>
+	window.onload=function(){
+		var bgImg = new Image();
+		bgImg.src = "image/1.png";
+		var bInit = 0;
+		var spanWidth = 20;
+		var spanHeight = 20;
+		var rowsCount = 0;
+		var coloumsCount = 0;	
+		bgImg.onload = function(){
+			imgWidth = this.width;  //��ȡͼƬ���
+			imgHeight = this.height;  ////��ȡͼƬ�߶�
+			var logo = document.getElementById("logo");
+			logo.style.marginLeft = -imgWidth/2 + "px";
+			logo.style.marginTop = -imgHeight/2 + "px";
+			coloumsCount = imgWidth/spanWidth;   //ÿ��span���
+			rowsCount = imgHeight/spanHeight;	 
+			for(var i=0;i<rowsCount;i++){
+				var Div = document.createElement("div");
+				Div.style.height = 20 + "px"; 
+				logo.appendChild(Div);
+				for(var j=0;j<coloumsCount;j++){
+					var x=Math.floor(Math.random()*1000-500);
+					var y=Math.floor(Math.random()*1000-500);
+					var z=Math.floor(Math.random()*1000-500);
+					var Span = document.createElement("span");
+					Span.style.backgroundPosition = "-"+spanWidth* j + "px -" +spanHeight*i + "px";
+					Span.style.transform = "translateX("+x+"%) translateY("+y+"%) translateZ("+z+"px) rotateX("+x+"deg) rotateY("+y+"deg) rotate("+z+"deg)";
+					Div.appendChild(Span);
+					Span.onmouseover = function(){
+						var spans = document.getElementsByTagName("span");
+						if(bInit==0){
+							for(var i=0;i<spans.length;i++)
+								spans[i].style.transform = "translateX("+0+"%) translateY("+0+"%) translateZ("+0+"px) rotateX("+0+"deg) rotateY("+0+"deg) rotate("+0+"deg)";
+								bInit++;
+						}else{
+								x=Math.floor(Math.random()*1800-900);
+								y=Math.floor(Math.random()*1800-900);
+								z=Math.floor(Math.random()*1800-900);
+								this.style.transform = "translateX("+x+"%) translateY("+y+"%) translateZ("+z+"px) rotateX("+x+"deg) rotateY("+y+"deg) rotate("+z+"deg)";
+								this.addEventListener("transitionend", function(){
+									this.style.transform = "translateX("+0+"%) translateY("+0+"%) translateZ("+0+"px) rotateX("+0+"deg) rotateY("+0+"deg) rotate("+0+"deg)";
+								});
+						}
+					
+					}
+				}
+		   }
+		}
+	}
+	</script>
+</body>
+</html>
