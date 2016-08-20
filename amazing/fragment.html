@@ -52,12 +52,12 @@
 		var rowsCount = 0;
 		var coloumsCount = 0;	
 		bgImg.onload = function(){
-			imgWidth = this.width;  //��ȡͼƬ���
-			imgHeight = this.height;  ////��ȡͼƬ�߶�
+			imgWidth = this.width;  //图片实际宽度
+			imgHeight = this.height;  //图片实际高度
 			var logo = document.getElementById("logo");
 			logo.style.marginLeft = -imgWidth/2 + "px";
 			logo.style.marginTop = -imgHeight/2 + "px";
-			coloumsCount = imgWidth/spanWidth;   //ÿ��span���
+			coloumsCount = imgWidth/spanWidth;   //生成coloumsCount*rowsCount个spanWidth*spanHeight小方块
 			rowsCount = imgHeight/spanHeight;	 
 			for(var i=0;i<rowsCount;i++){
 				var Div = document.createElement("div");
